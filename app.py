@@ -21,6 +21,9 @@ try:
 except Exception:
     BACKEND_URL = os.getenv("BACKEND_URL", "http://localhost:8000")
 
+# Strip trailing slash to avoid double-slash in URL joins
+BACKEND_URL = BACKEND_URL.rstrip("/")
+
 # ── Custom CSS ────────────────────────────────────────────────────────────────
 st.markdown("""
 <style>
