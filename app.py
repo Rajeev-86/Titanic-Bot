@@ -8,7 +8,7 @@ import streamlit as st
 import requests
 import os
 
-# ── Page config ───────────────────────────────────────────────────────────────
+# Page config
 st.set_page_config(
     page_title="Titanic Dataset ChatBot",
     page_icon="🚢",
@@ -24,7 +24,7 @@ except Exception:
 # Strip trailing slash to avoid double-slash in URL joins
 BACKEND_URL = BACKEND_URL.rstrip("/")
 
-# ── Custom CSS ────────────────────────────────────────────────────────────────
+# Custom CSS
 st.markdown("""
 <style>
     .main-header {
@@ -47,13 +47,13 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# ── Header ────────────────────────────────────────────────────────────────────
+# Header
 st.markdown('<div class="main-header">', unsafe_allow_html=True)
 st.title("🚢 Titanic Dataset ChatBot")
 st.caption("Ask anything about the Titanic passengers — get answers and charts!")
 st.markdown('</div>', unsafe_allow_html=True)
 
-# ── Sidebar ───────────────────────────────────────────────────────────────────
+# Sidebar
 with st.sidebar:
     st.header("💡 Example Questions")
     examples = [
@@ -75,7 +75,7 @@ with st.sidebar:
         "**Tech Stack:** FastAPI · LangChain · Gemini · Streamlit"
     )
 
-# ── Chat history ──────────────────────────────────────────────────────────────
+# Chat history
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
@@ -86,7 +86,7 @@ for msg in st.session_state.messages:
         if msg.get("chart"):
             st.image(msg["chart"], use_container_width=True)
 
-# ── Input ─────────────────────────────────────────────────────────────────────
+# Input
 prefill = st.session_state.pop("prefill", None)
 if prompt := (prefill or st.chat_input("Ask a question about the Titanic dataset...")):
     # Show user message
